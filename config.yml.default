@@ -1,8 +1,8 @@
-token: "XXXXXXXXXXXXXXXXXXXXXXXX"         # Lichess OAuth2 Token.
+token: "lip_2522NEpUqbcg5YuToHzt"         # Lichess OAuth2 Token.
 
 engine:                                   # Engine settings.
   dir: "./engines"                        # Directory containing the engine.
-  name: "stockfish"                       # Binary name of the engine to use.
+  name: "Q.exe"                       # Binary name of the engine to use.
   ponder: true                            # Think on opponent's time.
   syzygy:
     enabled: false                        # Activate local syzygy endgame tablebases.
@@ -12,8 +12,8 @@ engine:                                   # Engine settings.
     instant_play: true                    # Whether the bot should play directly from syzygy without engine if possible.
   uci_options:                            # Arbitrary UCI options passed to the engine. (Commenting allowed)
     Move Overhead: 100                    # Increase if your bot flags games too often.
-    Threads: 4                            # Max CPU threads the engine can use.
-    Hash: 256                             # Max memory (in megabytes) the engine can allocate.
+    Threads: 3                            # Max CPU threads the engine can use.
+    Hash: 512                             # Max memory (in megabytes) the engine can allocate.
   variants:
     enabled: false                        # Activate seperate engine for other chess variants than standard and chess960.
     dir: "./engines"                      # Directory containing the engine.
@@ -23,14 +23,14 @@ engine:                                   # Engine settings.
       Threads: 4                          # Max CPU threads the engine can use.
       Hash: 256                           # Max memory (in megabytes) the engine can allocate.
   opening_books:
-    enabled: false                        # Activate opening books.
+    enabled: true                        # Activate opening books.
     books:
-#     white:                              # List of names of books to use as white.
-#       - "WhiteBook"
-#     black:                              # List of names of books to use as black.
-#       - "BlackBook"
-      standard:                           # List of names of books to use if there is no specific book for white, black or chess960.
-        - "DefaultBook" 
+      white:                              # List of names of books to use as white.
+        - "BookW"
+      black:                              # List of names of books to use as black.
+        - "BookB"
+#     standard:                           # List of names of books to use if there is no specific book for white, black or chess960.
+#       - "DefaultBook" 
 #     chess960:                           # List of names of books to use for chess960.
 #       - "Chess960Book"
 #     Use the same pattern for 'antichess', 'atomic', 'crazyhouse', 'horde', 'kingofthehill', 'racingkings' and '3check' as well.
@@ -56,7 +56,7 @@ engine:                                   # Engine settings.
       min_time: 10                        # Time the bot must have at least to use the online move.
       timeout: 3                          # Time the server has to respond.
   offer_draw:
-    enabled: true                         # Activate whether the bot should offer draw.
+    enabled: false                         # Activate whether the bot should offer draw.
     score: 10                             # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp)
     consecutive_moves: 10                 # How many moves in a row the absolute value of the score has to be below the draw value
     min_game_length: 35                   # Earliest move in which draw is offered.
@@ -69,7 +69,7 @@ move_overhead_multiplier: 1.0             # Increase if your bot flags games too
     
 challenge:                                # Incoming challenges. (Commenting allowed)
   concurrency: 1                          # Number of games to play simultaneously.
-  bullet_with_increment_only: false       # Whether bullet games against BOTs should only be accepted with increment.
+  bullet_with_increment_only: true       # Whether bullet games against BOTs should only be accepted with increment.
 # min_increment: 0                        # Minimum amount of increment to accept a challenge.
 # max_increment: 180                      # Maximum amount of increment to accept a challenge.
 # min_initial: 0                          # Minimum amount of initial time to accept a challenge.
@@ -98,10 +98,10 @@ challenge:                                # Incoming challenges. (Commenting all
     - rated                               # Rated games
 
 matchmaking:
-  initial_time: 60                        # Initial time for matchmaking mode.
+  initial_time: 180                        # Initial time for matchmaking mode.
   increment: 1                            # Increment time for matchmaking mode.
   rated: true                             # Activate rated games in matchmaking mode.
-  timeout: 60                             # Time until a challenge is canceled.
+  timeout: 20                             # Time until a challenge is canceled.
   variant: standard                       # Chess variant (https://lichess.org/variant) to challenge.
 # min_rating_diff: 0                      # Minimum rating distance to opponent. (Commenting allowed)
 # max_rating_diff: 300                    # Maximum rating distance to opponent. (Commenting allowed)
@@ -109,3 +109,5 @@ matchmaking:
 
 books:                                    # Names of the opening books (to be used above in the opening_books section) and paths to the opening books.
   DefaultBook: "/path/to/DefaultBook.bin"
+  BookW: "./engines/BookW.bin"
+  BookB: "./engines/BookB.bin"
