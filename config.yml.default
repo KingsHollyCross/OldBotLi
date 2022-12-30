@@ -17,7 +17,7 @@ engine:                                   # Engine settings.
     Ponder: true
     MultiPV: 1
     Skill Level: 20
-    Slow Mover: 25
+    Slow Mover: 20
   variants:
     enabled: false                        # Activate seperate engine for other chess variants than standard and chess960.
     dir: "./engines"                      # Directory containing the engine.
